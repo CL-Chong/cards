@@ -19,7 +19,7 @@ class Poker:
             "K",
             "A",
         ]
-        self.special = [("r", "j"), ("b", "j")]
+        self.special = [("r", "jk"), ("b", "jk")]
         self.cardlist = [(suit, num) for suit in self.suits for num in self.numbers]
 
     def make_deck(self, deck_name="deck", jokers=False):

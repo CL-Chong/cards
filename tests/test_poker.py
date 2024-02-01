@@ -6,7 +6,7 @@ def test_poker_rank():
     carddata = Poker()
     three_of_spades = Card(("S", "3"))
     four_of_diamonds = Card(("D", "4"))
-    red_joker = Card(("r", "j"))
+    red_joker = Card(("r", "jk"))
     four_of_hearts = Card(("H", "4"))
     jack_of_clubs = Card(("C", "J"))
     queen_of_spades = Card(("S", "Q"))
@@ -40,18 +40,19 @@ def test_poker_rank():
     return
 
 
-def test_poker_sort():
+def test_poker_hand_sort():
     carddata = Poker()
     card_list = [
         Card(("S", "3")),
         Card(("D", "4")),
-        Card(("r", "j")),
+        Card(("r", "jk")),
         Card(("H", "4")),
         Card(("C", "J")),
         Card(("H", "K")),
     ]
 
     bar = Hand.from_list("foo", card_list)
+    assert bar.size() == 6
     bar.sort(key=carddata.rank_by_number)
     assert bar.hand == [
         Card(("S", "3")),
@@ -59,7 +60,7 @@ def test_poker_sort():
         Card(("H", "4")),
         Card(("C", "J")),
         Card(("H", "K")),
-        Card(("r", "j")),
+        Card(("r", "jk")),
     ]
     bar.sort(key=carddata.rank_by_suit)
     assert bar.hand == [
@@ -68,7 +69,7 @@ def test_poker_sort():
         Card(("H", "4")),
         Card(("H", "K")),
         Card(("S", "3")),
-        Card(("r", "j")),
+        Card(("r", "jk")),
     ]
 
     return
