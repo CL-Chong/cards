@@ -7,7 +7,8 @@ from objects.poker import Poker
 
 
 def game(rng: random.Random) -> int:
-    # rng=random.Random(seed=114514)
+    """Takes rng and generates a game of blackjack in the terminal.
+    returns +1/0/-1 for win/draw/lose."""
 
     player_dict = {s: Hand(s) for s in ["dealer", "player"]}
     deck = Poker().make_deck()
@@ -74,6 +75,7 @@ def print_state(player_dict):
 
 
 def welcome():
+    """prints some welcome messages for blackjack."""
     print_state({"foo": Hand.from_list("foo", [Card(("S", "A")), Card(("C", "10"))])})
     print("Simple S17 BLACKJACK. Bet, hit and stand.")
     return

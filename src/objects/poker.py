@@ -2,6 +2,35 @@ from objects.card_containers import Card, Hand
 
 
 class Poker:
+    """Poker contains information on playing cards.
+    Constructor:
+        constructs the 52 playing cards + 2 jokers
+
+    Attributes:
+    suits: list[str]
+        single capital letter for the 4 suits
+    numbers: list[str]
+        2-10, J, Q, K ,A
+    special: list[tuple[str]]
+        represent red and black jokers as [("r", "jk"), ("b", "jk")]
+    cardlist: list[tuple[str]]
+        52 playing cards, each represented as (<suit>, <number>)
+
+    Methods:
+    make_deck(deck_name, jokers): str, bool -> Hand
+        deck_name: str, default="deck"
+            describes name of the deck
+        jokers: bool, default=False
+            includes jokers if True, exclude if False
+        returns a Hand containing a deck of playing cards
+    rank_by_suit(card): Card -> int
+        returns an integer rank of a playing card, suit-first (e.g D3 < S2)
+        suits ranked in Engish convention C < D < H < S
+    rank_by_number(card): Card -> Card
+        returns an integer rank of a playing card, number-first (e.g. S2 < D3)
+        suits ranked in Engish convention C < D < H < S
+    """
+
     def __init__(self):
         self.suits = ["C", "D", "H", "S"]
         self.numbers = [

@@ -3,6 +3,9 @@ from objects.poker import Poker
 
 
 def card_score(card: Card) -> int:
+    """comptues the blackjack score of a card from Poker().cardlist.
+    returns 1 for aces.
+    """
     _, num = card.name
     if num == "A":
         return 1
@@ -13,6 +16,9 @@ def card_score(card: Card) -> int:
 
 
 def hand_score(hand: Hand) -> float | int:
+    """computes the blackjack score of a blackjack hand.
+    returns 0 for busted hand, and 21.1 for blackjacks.
+    raises ValueError if the hand size is less than 2."""
     if hand.size() < 2:
         raise ValueError(f"Invaid hand size for {hand.player}'s hand.")
     point_hand = [card_score(card) for card in hand]

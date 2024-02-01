@@ -2,6 +2,25 @@ import random
 
 
 class Card:
+    """
+    Constructor: Card(name): tuple[str] -> Card
+
+    Attributes:
+    name: tuple
+        a tuple of strings identifying the card
+    _hidden: bool, default False
+        if True, hides card and prints |X| when __repr__ is called
+
+    Methods:
+    hidden: -> bool
+        returns self._hidden
+    hide: -> self
+        sets _hidden to False in-place and return self
+    reveal: -> self
+        sets _hidden to True in-place and return self
+
+    """
+
     def __init__(self, name: tuple):
         self.name = name
         self._hidden = False
@@ -31,6 +50,41 @@ class Card:
 
 
 class Hand:
+    """container class for Card. Supports iteration and indexing.
+    Constructor: Hand(player): str -> Hand
+        constructs an empty hand with the player's name
+    Alternative constructor: Hand.from_list(player, card_list): str, list[Card] -> Hand
+        constructs a hand with the player's name and card_list as hand
+
+    Attributes:
+    hand: list[Card]
+        a list containing the cards
+    player: str
+        string containing name of the hand
+
+    Methods:
+    size: -> int
+        returns the size of the hand
+    shuffle(rng): random.Random ->
+        shuffles the hand in-place using rng
+    sort(key): function(Card -> int) ->
+        sort the hand using the key provided
+    draw(card): Card ->
+        appends the card to the right of the hand
+    deal: -> Card
+        removes and returns the rightmost card of the hand
+    play(card): Card -> Card
+        removes and returns the input card from the hand
+        raises ValueError if the card is not in the hand
+    hidden: -> list[bool]
+        returns list containing card.hidden() for card in hand
+    hide: -> Hand
+        applies card.hide() for card in hand and return self
+    reveal: -> Hand
+        applies card.reveal() for card in hand and return self
+
+    """
+
     def __init__(self, player: str):
         self.hand = []
         self.player = player
@@ -78,7 +132,7 @@ class Hand:
 
     def deal(self):
         if len(self.hand) == 0:
-            raise IndexError(f"No cards in {self.player}'s Hand")
+            raise ValueError(f"No cards in {self.player}'s Hand")
         card_out = self.hand.pop()
         return card_out
 
