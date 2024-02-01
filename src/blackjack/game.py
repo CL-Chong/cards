@@ -54,7 +54,7 @@ def game(rng: random.Random) -> int:
         print("dealer wins.")
         return -1
     else:
-        print("draw.")
+        print("game drawn.")
         return 0
 
 
@@ -70,4 +70,10 @@ def print_state(player_dict):
         right = f"{player_name}'s score: {score}"
         print(f"{left: <50}{right: >20}")
 
+    return
+
+
+def welcome():
+    print_state({"foo": Hand.from_list("foo", [Card(("S", "A")), Card(("C", "10"))])})
+    print("Simple S17 BLACKJACK. Bet, hit and stand.")
     return
